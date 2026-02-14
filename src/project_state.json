@@ -1,0 +1,70 @@
+{
+  "schemaVersion": "1.0.0",
+  "projectStateVersion": 3,
+  "summary": "Create a dapp that generates condescending, sassy puns using the word \"NEAR\" to poke fun at the NEAR protocol in crypto.",
+  "architectural_notes": [],
+  "known_issues": [],
+  "isFixRequest": false,
+  "imageRequirements": "## Required Images\n- Snarky terminal-sticker style logo with the word \"NEAR\" featured prominently, charcoal/acid-green palette (near-snark-logo.dim_512x512.png)\n- Seamless subtle background pattern with abstract crypto/terminal motifs, charcoal/gray with light acid-green accents (near-snark-bg-tile.dim_1024x1024.png)",
+  "existing_features": [
+    {
+      "id": "feature-create-a-simple-single-page-ui-that-generates-and-displays-condescending-sassy-puns-that-include-the-word-near-and-poke-fun-at-the-near-protocol-in-crypto",
+      "title": "Create a simple single-page UI that generates and displays condescending, sassy puns that include the word \"NEAR\" and poke fun at the NEAR protocol in crypto.",
+      "reqIds": [
+        "REQ-1"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-connect-the-frontend-to-the-backend-using-the-generated-actor-so-that-clicking-generate-pun-fetches-a-new-pun-from-the-canister-and-updates-the-ui-using-react-query-for-loading-error-states",
+      "title": "Connect the frontend to the backend using the generated actor so that clicking \"Generate pun\" fetches a new pun from the canister and updates the UI, using React Query for loading/error states.",
+      "reqIds": [
+        "REQ-3"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-coherent-visual-theme-and-tone-for-the-app-that-matches-a-snarky-crypto-pun-generator-avoid-blue-purple-as-the-primary-palette-and-apply-it-consistently-across-typography-spacing-and-components",
+      "title": "Add a coherent visual theme and tone for the app that matches a snarky crypto-pun generator (avoid blue/purple as the primary palette), and apply it consistently across typography, spacing, and components.",
+      "reqIds": [
+        "REQ-4"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-static-assets-section-to-the-frontend-that-displays-the-generated-branding-images-logo-subtle-background-from-frontend-public-assets-generated",
+      "title": "Add a static assets section to the frontend that displays the generated branding images (logo + subtle background) from frontend/public/assets/generated.",
+      "reqIds": [
+        "REQ-6"
+      ],
+      "version": 1
+    }
+  ],
+  "new_feature_requests": [
+    {
+      "id": "AR-1",
+      "summary": "Build a dapp that spits out condescending/sassy NEAR-themed puns making fun of the NEAR protocol in crypto",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-3",
+      "summary": "Implement a Motoko backend in the single main actor that generates NEAR-themed condescending/sassy puns using deterministic templates plus randomness, and expose a query method for fetching a new pun.",
+      "reqIds": [
+        "REQ-2"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-6",
+      "summary": "Add basic content safety guardrails so generated puns remain focused on mocking the NEAR protocol/project and do not include slurs or attacks on protected classes.",
+      "reqIds": [
+        "REQ-5"
+      ],
+      "status": "pending"
+    }
+  ],
+  "projectName": "NEAR Snark Pun Generator Dapp",
+  "clarification_mode": "instant",
+  "clarification_rounds": 0
+}

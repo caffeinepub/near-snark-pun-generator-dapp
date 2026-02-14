@@ -1,0 +1,84 @@
+{
+  "kind": "feature_evidence_report",
+  "features": [
+    {
+      "featureId": "feature-create-a-simple-single-page-ui-that-generates-and-displays-condescending-sassy-puns-that-include-the-word-near-and-poke-fun-at-the-near-protocol-in-crypto",
+      "featureTitle": "Create a simple single-page UI that generates and displays condescending, sassy puns that include the word \"NEAR\" and poke fun at the NEAR protocol in crypto.",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/components/PunPanel.tsx",
+        "frontend/src/components/RecentPunsList.tsx",
+        "frontend/src/main.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-1"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-connect-the-frontend-to-the-backend-using-the-generated-actor-so-that-clicking-generate-pun-fetches-a-new-pun-from-the-canister-and-updates-the-ui-using-react-query-for-loading-error-states",
+      "featureTitle": "Connect the frontend to the backend using the generated actor so that clicking \"Generate pun\" fetches a new pun from the canister and updates the UI, using React Query for loading/error states.",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/hooks/useGeneratePun.ts"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-3"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-add-a-coherent-visual-theme-and-tone-for-the-app-that-matches-a-snarky-crypto-pun-generator-avoid-blue-purple-as-the-primary-palette-and-apply-it-consistently-across-typography-spacing-and-components",
+      "featureTitle": "Add a coherent visual theme and tone for the app that matches a snarky crypto-pun generator (avoid blue/purple as the primary palette), and apply it consistently across typography, spacing, and components.",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/index.css",
+        "frontend/tailwind.config.js"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-4"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-add-a-static-assets-section-to-the-frontend-that-displays-the-generated-branding-images-logo-subtle-background-from-frontend-public-assets-generated",
+      "featureTitle": "Add a static assets section to the frontend that displays the generated branding images (logo + subtle background) from frontend/public/assets/generated.",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/index.css"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-6"
+      ],
+      "confidence": "high"
+    }
+  ]
+}
