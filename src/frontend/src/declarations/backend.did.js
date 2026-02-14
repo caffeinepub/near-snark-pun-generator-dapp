@@ -9,14 +9,14 @@
 import { IDL } from '@icp-sdk/core/candid';
 
 export const idlService = IDL.Service({
-  'generatePun' : IDL.Func([IDL.Nat], [IDL.Text], ['query']),
+  'generatePun' : IDL.Func([IDL.Nat, IDL.Nat], [IDL.Text], ['query']),
 });
 
 export const idlInitArgs = [];
 
 export const idlFactory = ({ IDL }) => {
   return IDL.Service({
-    'generatePun' : IDL.Func([IDL.Nat], [IDL.Text], ['query']),
+    'generatePun' : IDL.Func([IDL.Nat, IDL.Nat], [IDL.Text], ['query']),
   });
 };
 

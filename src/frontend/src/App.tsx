@@ -13,10 +13,7 @@ function App() {
   const { mutate: generatePun, isPending, isError, error } = useGeneratePun();
 
   const handleGenerate = () => {
-    // Generate random index between 0-9 (backend has 10 puns)
-    const randomIndex = BigInt(Math.floor(Math.random() * 10));
-    
-    generatePun(randomIndex, {
+    generatePun(undefined, {
       onSuccess: (pun) => {
         setCurrentPun(pun);
         setRecentPuns((prev) => {

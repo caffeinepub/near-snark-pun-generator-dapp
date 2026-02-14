@@ -1,150 +1,75 @@
 {
   "kind": "build_request",
-  "title": "NEAR Snark Pun Generator Dapp",
+  "title": "Ensure all puns are NEAR-focused while including ICP and other Web3 comparisons",
   "priority": "normal",
   "requirements": [
     {
-      "id": "REQ-1",
-      "text": "Create a simple single-page UI that generates and displays condescending, sassy puns that include the word \"NEAR\" and poke fun at the NEAR protocol in crypto.",
-      "target": "frontend",
-      "source": {
-        "messageIds": [
-          "msg-1",
-          "msg-6"
-        ],
-        "quotes": [
-          "Caffeine, I want to create a dapp that spits out condescending and sassy puns about the \"NEAR\" protocol. The puns should use \"NEAR\" and make fun of the NEAR protocol in crypto"
-        ]
-      },
-      "acceptanceCriteria": [
-        "Landing page shows an app title, a primary \"Generate pun\" button, and an area where the generated pun is displayed.",
-        "Each generated pun visibly includes the exact substring \"NEAR\" (case-sensitive match is acceptable).",
-        "UI includes a \"Copy\" action that copies the currently displayed pun to the clipboard with a visible success state.",
-        "UI includes a small list of the most recent generated puns (at least last 10) within the session."
-      ]
-    },
-    {
-      "id": "REQ-2",
-      "text": "Implement a Motoko backend in the single main actor that generates NEAR-themed condescending/sassy puns using deterministic templates plus randomness, and expose a query method for fetching a new pun.",
+      "id": "REQ-11",
+      "text": "Update the backend pun catalog so that every generated pun is explicitly about NEAR (i.e., each output must include the literal text \"NEAR\"), while still allowing comparisons that mention ICP and other Web3 projects/protocols.",
       "target": "backend",
       "source": {
         "messageIds": [
-          "msg-1",
-          "msg-6"
+          "msg-4"
         ],
         "quotes": [
-          "create a dapp that spits out condescending and sassy puns about the \"NEAR\" protocol"
+          "No the puns need to be about NEAR but comparison should also include ICP among other web3 related stuff"
         ]
       },
       "acceptanceCriteria": [
-        "Backend exposes a query method (e.g., getPun) that returns a single pun as Text.",
-        "Returned pun always contains the word \"NEAR\".",
-        "Pun generation uses a set of templates and/or phrase fragments so multiple unique outputs are possible.",
-        "No persistent state is required for pun generation; canister installs cleanly with no migration steps."
+        "Calling generatePun(...) never returns a pun that omits the substring \"NEAR\".",
+        "Puns that previously only mentioned ICP are revised so they also reference NEAR (e.g., as a comparison/contrast), rather than being ICP-only jokes.",
+        "Template-based puns that currently do not mention NEAR are revised so the assembled output includes NEAR."
       ]
     },
     {
-      "id": "REQ-3",
-      "text": "Connect the frontend to the backend using the generated actor so that clicking \"Generate pun\" fetches a new pun from the canister and updates the UI, using React Query for loading/error states.",
-      "target": "both",
-      "source": {
-        "messageIds": [
-          "msg-6"
-        ],
-        "quotes": [
-          "create a dapp that spits out condescending and sassy puns"
-        ]
-      },
-      "acceptanceCriteria": [
-        "Clicking \"Generate pun\" triggers a canister call and updates the displayed pun on success.",
-        "A loading indicator/state is shown while a pun is being fetched.",
-        "Errors from the canister call are surfaced in the UI with a retry option.",
-        "React Query is used for request state management (loading/error/success)."
-      ]
-    },
-    {
-      "id": "REQ-4",
-      "text": "Add a coherent visual theme and tone for the app that matches a snarky crypto-pun generator (avoid blue/purple as the primary palette), and apply it consistently across typography, spacing, and components.",
-      "target": "frontend",
-      "source": {
-        "messageIds": [
-          "msg-6"
-        ],
-        "quotes": [
-          "condescending and sassy puns"
-        ]
-      },
-      "acceptanceCriteria": [
-        "The app uses a consistent color palette (not primarily blue/purple) and a distinct typographic style.",
-        "Primary actions, secondary actions (Copy), and message states (loading/error) have clearly differentiated styling.",
-        "Layout is responsive and usable on mobile and desktop."
-      ]
-    },
-    {
-      "id": "REQ-5",
-      "text": "Add basic content safety guardrails so generated puns remain focused on mocking the NEAR protocol/project and do not include slurs or attacks on protected classes.",
+      "id": "REQ-12",
+      "text": "Expand backend content coverage so a meaningful portion of generated NEAR-focused puns also include direct comparisons to ICP and additional Web3-related projects/protocols (while keeping NEAR as the primary subject of the joke).",
       "target": "backend",
       "source": {
         "messageIds": [
-          "msg-6"
+          "msg-4"
         ],
         "quotes": [
-          "make fun of the NEAR protocol in crypto"
+          "comparison should also include ICP among other web3 related stuff"
         ]
       },
       "acceptanceCriteria": [
-        "Pun templates/fragments do not include hate speech or references to protected classes.",
-        "Puns target the NEAR protocol/project in general rather than specific private individuals.",
-        "If a template pool is edited in the future, a simple backend-side filter exists to reject outputs containing a configurable list of banned terms."
+        "The backend includes new or updated hand-written puns and/or templates that mention NEAR and ICP together in a substantial portion of outputs.",
+        "The backend includes new or updated content that mentions NEAR plus at least several other Web3-related projects/protocols (in addition to ICP).",
+        "Repeated calls to generatePun(...) can produce outputs that compare NEAR vs ICP as well as NEAR vs other Web3 projects/protocols, without changing the frontend API shape."
       ]
     },
     {
-      "id": "REQ-6",
-      "text": "Add a static assets section to the frontend that displays the generated branding images (logo + subtle background) from frontend/public/assets/generated.",
-      "target": "frontend",
+      "id": "REQ-13",
+      "text": "Adjust backend content-safety guardrails so NEAR-vs-ICP and NEAR-vs-other-Web3 comparison puns are not incorrectly rejected as unsafe, while still ensuring outputs remain focused on blockchain/protocol satire (not attacks on protected classes).",
+      "target": "backend",
       "source": {
         "messageIds": [
-          "msg-6"
+          "msg-4"
+        ],
+        "quotes": [
+          "comparison should also include ICP among other web3 related stuff"
         ]
       },
       "acceptanceCriteria": [
-        "Generated images are present under frontend/public/assets/generated and are referenced directly by the frontend (no backend image routing).",
-        "The logo is displayed in the header area.",
-        "The background image/pattern is applied subtly (e.g., page background or hero container) without harming text readability."
+        "generatePun(...) does not frequently return fallback error strings like \"Template contains unsafe content...\" for legitimate NEAR/ICP/Web3 protocol satire puns.",
+        "Safety checks continue to enforce that puns remain about protocols/projects (e.g., NEAR and other Web3 terms) rather than drifting into unrelated content.",
+        "Frontend generation (useGeneratePun) does not start failing more often due to backend returning strings containing \"unsafe content\" after the content expansion."
       ]
     }
   ],
   "constraints": [
-    "Backend must remain a single Motoko actor (all logic in the main actor file).",
-    "Do not edit files under frontend/src/components/ui (compose them instead).",
-    "Do not edit the immutable hook/entrypoint paths listed in SYSTEM_CONTEXT (compose/extend behavior elsewhere).",
-    "User-facing text must be in English."
+    "Backend must remain a single Motoko actor with logic in backend/main.mo.",
+    "Do not edit frontend immutable paths listed in SYSTEM_CONTEXT (e.g., frontend/src/hooks/useActor.ts, frontend/src/main.tsx, frontend/src/components/ui).",
+    "Keep the backend method signature for generatePun(randomIndex, randomFocusIndex) compatible with the current frontend caller."
   ],
   "nonGoals": [
-    "No third-party authentication beyond what the template provides; do not require Internet Identity login for basic pun generation.",
-    "No payments, tokens, on-chain interactions, or integrations with NEAR APIs.",
-    "No real-time features (e.g., websockets/chat).",
-    "No external databases or off-chain storage."
+    "Adding new pages or major UI changes.",
+    "Introducing third-party APIs, databases, or non-Motoko backend services.",
+    "Changing authentication beyond the existing Internet Identity setup."
   ],
   "imageRequirements": {
-    "required": [
-      "Snarky terminal-sticker style logo with the word \"NEAR\" featured prominently, charcoal/acid-green palette (near-snark-logo.dim_512x512.png)",
-      "Seamless subtle background pattern with abstract crypto/terminal motifs, charcoal/gray with light acid-green accents (near-snark-bg-tile.dim_1024x1024.png)"
-    ],
+    "required": [],
     "edits": []
-  },
-  "userProfileUpdate": {
-    "goalsToAdd": [
-      "Build a dapp that generates condescending, sassy NEAR-themed puns mocking the NEAR protocol."
-    ],
-    "goalsToRemove": [],
-    "preferencesToAdd": [
-      "Use English for user-facing text."
-    ],
-    "preferencesToRemove": [],
-    "miscToAdd": [],
-    "miscToRemove": [],
-    "fieldsToSet": {},
-    "fieldsToDelete": []
   }
 }

@@ -1,8 +1,8 @@
 {
-  "frontend/src/App.tsx": "Main application component featuring header with logo, hero section, pun generation button with loading states, error handling with retry, and footer with attribution.",
+  "frontend/src/App.tsx": "Main application component featuring header with logo, hero section, pun generation button with loading states, error handling with retry, and footer with attribution; no longer passes hardcoded index to mutation.",
   "frontend/src/components/PunPanel.tsx": "Displays the current generated pun in a prominent card with copy-to-clipboard functionality and integrates the recent puns list component.",
   "frontend/src/components/RecentPunsList.tsx": "Scrollable list component showing the last 10 generated puns in a compact, readable format with hover effects.",
-  "frontend/src/hooks/useGeneratePun.ts": "React Query mutation hook that calls the backend generatePun method with a random index and handles success/error states.",
+  "frontend/src/hooks/useGeneratePun.ts": "React Query mutation hook that internally generates large random BigInt values for both randomIndex and randomFocusIndex parameters, calls the backend generatePun method, and handles success/error states without relying on frontend-constrained index ranges.",
   "frontend/src/index.css": "Global styles with charcoal and acid-green OKLCH color system for both light and dark modes, avoiding blue/purple palette.",
   "frontend/tailwind.config.js": "Tailwind configuration extended with custom fonts (Inter, JetBrains Mono), acid-green color tokens, and custom shadows including a glow effect."
 }

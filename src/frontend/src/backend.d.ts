@@ -8,5 +8,5 @@ export interface None {
 }
 export type Option<T> = Some<T> | None;
 export interface backendInterface {
-    generatePun(randomIndex: bigint): Promise<string>;
+    generatePun(randomIndex: bigint, _randomFocusIndex: bigint): Promise<string>;
 }

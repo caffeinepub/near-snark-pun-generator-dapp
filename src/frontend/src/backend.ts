@@ -90,21 +90,21 @@ export class ExternalBlob {
     }
 }
 export interface backendInterface {
-    generatePun(randomIndex: bigint): Promise<string>;
+    generatePun(randomIndex: bigint, _randomFocusIndex: bigint): Promise<string>;
 }
 export class Backend implements backendInterface {
     constructor(private actor: ActorSubclass<_SERVICE>, private _uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, private _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, private processError?: (error: unknown) => never){}
-    async generatePun(arg0: bigint): Promise<string> {
+    async generatePun(arg0: bigint, arg1: bigint): Promise<string> {
         if (this.processError) {
             try {
-                const result = await this.actor.generatePun(arg0);
+                const result = await this.actor.generatePun(arg0, arg1);
                 return result;
             } catch (e) {
                 this.processError(e);
                 throw new Error("unreachable");
             }
         } else {
-            const result = await this.actor.generatePun(arg0);
+            const result = await this.actor.generatePun(arg0, arg1);
             return result;
         }
     }

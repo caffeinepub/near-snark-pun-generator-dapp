@@ -1,11 +1,12 @@
 {
   "schemaVersion": "1.0.0",
-  "projectStateVersion": 3,
-  "summary": "Create a dapp that generates condescending, sassy puns using the word \"NEAR\" to poke fun at the NEAR protocol in crypto.",
-  "architectural_notes": [],
+  "projectStateVersion": 7,
+  "summary": "Create a dapp that generates condescending, sassy puns using the word \"NEAR\" to poke fun at the NEAR protocol in crypto, including comparisons to ICP and other Web3 projects.",
+  "architectural_notes": [
+    "Content direction: puns must remain primarily about NEAR, but may include comparisons to ICP and other Web3 projects/protocols."
+  ],
   "known_issues": [],
   "isFixRequest": false,
-  "imageRequirements": "## Required Images\n- Snarky terminal-sticker style logo with the word \"NEAR\" featured prominently, charcoal/acid-green palette (near-snark-logo.dim_512x512.png)\n- Seamless subtle background pattern with abstract crypto/terminal motifs, charcoal/gray with light acid-green accents (near-snark-bg-tile.dim_1024x1024.png)",
   "existing_features": [
     {
       "id": "feature-create-a-simple-single-page-ui-that-generates-and-displays-condescending-sassy-puns-that-include-the-word-near-and-poke-fun-at-the-near-protocol-in-crypto",
@@ -38,6 +39,14 @@
         "REQ-6"
       ],
       "version": 1
+    },
+    {
+      "id": "feature-remove-the-frontend-s-hardcoded-assumption-that-the-backend-has-exactly-10-puns-and-ensure-pun-generation-never-produces-out-of-bounds-failures-after-the-backend-variety-expansion",
+      "title": "Remove the frontend’s hardcoded assumption that the backend has exactly 10 puns and ensure pun generation never produces out-of-bounds failures after the backend variety expansion.",
+      "reqIds": [
+        "REQ-10"
+      ],
+      "version": 1
     }
   ],
   "new_feature_requests": [
@@ -60,6 +69,66 @@
       "summary": "Add basic content safety guardrails so generated puns remain focused on mocking the NEAR protocol/project and do not include slurs or attacks on protected classes.",
       "reqIds": [
         "REQ-5"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-7",
+      "summary": "Greatly expand pun variety (more templates/slot combinations) so each generation feels different, and add many puns that directly compare/mock NEAR against ICP",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-8",
+      "summary": "Greatly increase pun variety in the Motoko canister so that repeated clicks produce a large number of distinct NEAR-themed puns, using a combination of (a) a larger curated set of hand-written puns and/or (b) template + slot-combination generation (multiple interchangeable phrases) to create many unique outputs.",
+      "reqIds": [
+        "REQ-7"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-9",
+      "summary": "Add substantial coverage of puns that directly compare NEAR against ICP (Internet Computer), making ICP the contrasting reference in a significant portion of outputs while keeping the tone focused on mocking protocols/projects rather than people.",
+      "reqIds": [
+        "REQ-8"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-10",
+      "summary": "Update content-safety guardrails in the backend so the new expanded pun catalog (including NEAR vs ICP comparisons) does not get incorrectly rejected as \"unsafe content\" due to missing keywords, while still ensuring puns remain focused on blockchain/protocol satire.",
+      "reqIds": [
+        "REQ-9"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-11",
+      "summary": "Expand pun content to include comparisons of NEAR vs ICP and other Web3-related projects/protocols (while keeping the primary focus on NEAR).",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-12",
+      "summary": "Update the backend pun catalog so that every generated pun is explicitly about NEAR (i.e., each output must include the literal text \"NEAR\"), while still allowing comparisons that mention ICP and other Web3 projects/protocols.",
+      "reqIds": [
+        "REQ-11"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-13",
+      "summary": "Expand backend content coverage so a meaningful portion of generated NEAR-focused puns also include direct comparisons to ICP and additional Web3-related projects/protocols (while keeping NEAR as the primary subject of the joke).",
+      "reqIds": [
+        "REQ-12"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-14",
+      "summary": "Adjust backend content-safety guardrails so NEAR-vs-ICP and NEAR-vs-other-Web3 comparison puns are not incorrectly rejected as unsafe, while still ensuring outputs remain focused on blockchain/protocol satire (not attacks on protected classes).",
+      "reqIds": [
+        "REQ-13"
       ],
       "status": "pending"
     }

@@ -1,77 +1,33 @@
 {
   "kind": "spec_vs_diff_report",
   "version": "1.0",
-  "generatedAt": "2026-02-14T20:45:49.266Z",
-  "summary": "Frontend scaffolding for a snarky pun generator UI is added (PunPanel with copy success state, recent list, themed styling, background/logo references, React Query mutation). However, several backend requirements are not met (backend-side randomness, always-return-NEAR invariant, and proper banned-terms safety filter), and required generated image assets are referenced but not shown as added. Some UI acceptance criteria (loading/error/retry) cannot be fully verified due to App.tsx truncation.",
+  "generatedAt": "2026-02-14T23:22:20.215Z",
+  "summary": "Backend content was expanded with new NEAR-vs-ICP and NEAR-vs-other-protocol puns, plus updated safety keyword logic. However, at least one template path can still generate output that does not include the literal substring \"NEAR\", violating the requirement that all generated puns explicitly include \"NEAR\". A migration module was also added, which was not requested.",
   "missing_requirements": [
     {
-      "id": "REQ-2",
-      "requirement": "Backend generates NEAR-themed puns using deterministic templates plus randomness (in backend) and exposes a query method returning a pun as Text; returned pun always contains \"NEAR\".",
-      "reason": "The backend query method `generatePun` requires the caller to supply `randomIndex` (randomness happens in frontend), and it can return strings that do not include \"NEAR\" (e.g., out-of-bounds/unsafe-content messages).",
+      "id": "REQ-11",
+      "requirement": "Calling generatePun(...) never returns a pun that omits the substring \"NEAR\" (all puns must explicitly include the literal text \"NEAR\", including template-assembled puns).",
+      "reason": "The template assembly function concatenates only setup + punchline and ignores the template Focus terms (which include \"NEAR\"). At least one template's setup/punchline text does not include \"NEAR\", so generatePun can return a string without the literal substring \"NEAR\".",
       "evidence": [
-        "backend/main.mo (public query func generatePun(randomIndex : Nat) ... returns \"Random index out of bounds\" / \"Generated pun contains unsafe content.\" / \"No pun templates available\")",
-        "frontend/src/App.tsx (handleGenerate computes randomIndex in frontend: BigInt(Math.floor(Math.random() * 10)))"
-      ]
-    },
-    {
-      "id": "REQ-3",
-      "requirement": "Use React Query for loading/error states, show loading indicator while fetching, and surface canister errors in UI with a retry option.",
-      "reason": "React Query is used via `useMutation`, but the diff evidence does not show an actual loading indicator, error display, or retry UI (App.tsx content is truncated before those UI elements are visible).",
-      "evidence": [
-        "frontend/src/hooks/useGeneratePun.ts (useMutation used, errors thrown)",
-        "frontend/src/App.tsx (truncated; only shows hook usage: { mutate, isPending, isError, error })"
-      ]
-    },
-    {
-      "id": "REQ-5",
-      "requirement": "Backend content safety guardrails: templates/fragments avoid slurs/protected-class attacks, target NEAR generally, and include a simple backend-side filter with a configurable list of banned terms.",
-      "reason": "The backend implements a `safeWords` allowlist check rather than a configurable banned-terms list, and the logic is not aligned with the requirement to reject outputs containing banned terms.",
-      "evidence": [
-        "backend/main.mo (let safeWords : [Text] = [...]; func containsUnsafeContent(text) = not safeWords.values().any(text.contains(word)))"
-      ]
-    },
-    {
-      "id": "REQ-6",
-      "requirement": "Generated branding images are present under frontend/public/assets/generated and referenced directly by the frontend (logo in header, background pattern applied subtly).",
-      "reason": "The frontend references the required asset paths, but the diff does not show the actual image files being added under frontend/public/assets/generated.",
-      "evidence": [
-        "frontend/src/App.tsx (references /assets/generated/near-snark-logo.dim_512x512.png and /assets/generated/near-snark-bg-tile.dim_1024x1024.png)"
+        "backend/main.mo (assemblePun uses setup # \" \" # punchline; ignores focus)",
+        "backend/main.mo (templates: \"What do you call encrypted error messages?\" / \"A consensus protocol mystery.\" has Focus [\"NEAR\", \"blockchain\", \"setup\"] but the setup/punchline shown contain no \"NEAR\")"
       ]
     }
   ],
   "hallucinated_features": [
     {
-      "description": "Backend pun generation API requires a caller-supplied random index parameter rather than generating randomness internally.",
-      "reason": "BuildRequest asks the backend to generate puns using templates plus randomness; it does not request a design where the frontend supplies the random selector index.",
+      "description": "Added a backend migration module and wired migration into the main actor.",
+      "reason": "The BuildRequest did not request data migration/upgrade support; it focused on pun content and safety behavior while keeping a single Motoko actor and the existing generatePun signature.",
       "evidence": [
-        "backend/main.mo (generatePun(randomIndex : Nat))",
-        "frontend/src/App.tsx (frontend chooses randomIndex and passes to actor.generatePun)"
-      ]
-    },
-    {
-      "description": "Header includes outbound social links (X/Twitter and GitHub) with icons.",
-      "reason": "Not requested in any requirement; additional UI behavior beyond spec.",
-      "evidence": [
-        "frontend/src/App.tsx (imports SiX, SiGithub; links to https://twitter.com and https://github.com)"
+        "backend/migration.mo (new module with OldActor/NewActor and run())",
+        "backend/main.mo (import Migration \"migration\"; (with migration = Migration.run))"
       ]
     }
   ],
   "confidence": 0.72,
   "changed_files": [
-    "all_files_summary.json",
     "backend/main.mo",
-    "frontend-file-summaries.txt",
-    "frontend/index.css",
-    "frontend/index.html",
-    "frontend/src/App.tsx",
-    "frontend/src/components/PunPanel.tsx",
-    "frontend/src/components/RecentPunsList.tsx",
-    "frontend/src/hooks/useActor.ts",
-    "frontend/src/hooks/useGeneratePun.ts",
-    "frontend/src/hooks/useInternetIdentity.ts",
-    "frontend/src/index.css",
-    "frontend/src/main.tsx",
-    "frontend/tailwind.config.js",
+    "backend/migration.mo",
     "project_state.json"
   ]
 }
